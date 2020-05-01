@@ -8,9 +8,10 @@ citasCtrl.renderCitaForm = (req, res) => {
 
 citasCtrl.createNewCita = async (req, res) => {
     const { id_number, name, lastname, birth, city, neighborhood, phone } = req.body;
+    const citaid = await Cita.findOne({id_number: id_number});
     const newCita = new Cita({id_number, name, lastname, birth, city, neighborhood, phone});
     newCita.user = req.user.id;
-    if (newCita.id_number == req.body.id_number) { // Para evitar crear cita duplicada
+    if (citaid) { // Para evitar crear cita duplicada
         req.flash('error_msg', 'Cita already Exists.');
         return res.redirect('/citas');
     }

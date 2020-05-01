@@ -79,3 +79,8 @@ h5 {
     text-align: center;
     font-weight: bold;
 }
+
+#a {
+    font-weight: 350;
+    color: darkslategray;
+}
